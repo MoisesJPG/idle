@@ -1,0 +1,16 @@
+{
+  "name": "idle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^31.0.2",
+    "electron-packager": "^17.1.2"
+  }
+}
