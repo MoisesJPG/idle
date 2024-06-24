@@ -1,24 +1,30 @@
 // Clase Item
 class Item {
 
-    constructor(name) {
+    constructor(id, name, amount) {
+        this.id = id;
         this.name = name;
-        this.amount = 0;
+        this.amount = amount;
     }
 
     addAmount(amount) { this.amount += amount; }
     setAmount(amount) { this.amount = amount; }
     removeAmount(amount) { this.amount -= amount; }
 
+    GetID(){
+        return this.id;
+    }
+
     toJSON() {
         return {
+            id: this.id,
             name: this.name,
             amount: this.amount
         };
     }
 
     static fromJSON(data) {
-        return new Item(data.name, data.amount);
+        return new Item(data.id, data.name, data.amount);
     }
 }
 
@@ -27,8 +33,8 @@ class InventoryClass {
 
     constructor() {
         this.items = {
-            Coal_ore: new Item("Coal ore"),
-            Iron_ore: new Item("Iron ore")
+            Coal_ore: new Item(0, "Coal ore"),
+            Iron_ore: new Item(1, "Iron ore")
         };
     }
 
@@ -91,3 +97,4 @@ const InventoryLoaded = InventoryClass.fromJSON(cargarDatos('Inventory'));
 const Default_MiningSkill = new MiningSkill();
 console.log(InventoryLoaded);
 console.log(Default_MiningSkill.items);
+export { Item, Inventory, Default_MiningSkill};

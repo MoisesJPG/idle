@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="database.js"></script>
     <script type="module">
+        
         import MiningSkill from './database.js';
 
         function AddAmount(item, amount){
@@ -15,7 +16,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            MiningSkill.items.forEach(item => {
+            const def_MiningSkiil = new MiningSkill();
+            def_MiningSkiil.items.forEach(item => {
                 const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
                 var innerHTML = '';
                 innerHTML += '<item onclick="AddAmount(Inventory.Coal_ore, 1)">';
