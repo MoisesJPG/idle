@@ -23,7 +23,7 @@ class Item {
 }
 
 // Clase Inventory
-class Inventory {
+class InventoryClass {
 
     constructor() {
         this.items = {
@@ -41,7 +41,7 @@ class Inventory {
     }
 
     static fromJSON(data) {
-        const inventory = new Inventory();
+        const inventory = new InventoryClass();
         for (const key in data) {
             inventory.items[key] = Item.fromJSON(data[key]);
         }
@@ -57,8 +57,8 @@ class MiningSkill {
     }
 
     static items = [
-        Inventory.Coal_ore,
-        Inventory.Iron_ore
+        InventoryClass.Coal_ore,
+        InventoryClass.Iron_ore
     ];
 }
 
@@ -78,7 +78,7 @@ function cargarDatos(clave) {
 }
 
 // Ejemplo de uso
-const Inventory = new Inventory();
+const Inventory = new InventoryClass();
 Inventory.getItem('Coal_ore').addAmount(10);
 Inventory.getItem('Iron_ore').addAmount(5);
 
@@ -86,6 +86,6 @@ Inventory.getItem('Iron_ore').addAmount(5);
 guardarDatos('inventory', Inventory);
 
 // Cargar el inventario desde localStorage
-const InventoryLoaded = Inventory.fromJSON(cargarDatos('Inventory'));
+const InventoryLoaded = InventoryClass.fromJSON(cargarDatos('Inventory'));
 
 console.log(InventoryLoaded);
