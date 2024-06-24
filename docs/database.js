@@ -54,12 +54,11 @@ class MiningSkill {
 
     constructor(name) {
         this.name = name;
-        const MiningSkillInv = new InventoryClass();
-        this.items = [
-            MiningSkillInv.items.Coal_ore,
-            MiningSkillInv.items.Iron_ore
-        ];
     }
+    static items = [
+        InventoryClass.items.Coal_ore,
+        InventoryClass.items.Iron_ore
+    ];
 
 }
 
