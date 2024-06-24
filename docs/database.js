@@ -57,8 +57,8 @@ class MiningSkill {
     }
 
     static items = [
-        'Coal_ore',
-        'Iron_ore'
+        Inventory.Coal_ore,
+        Inventory.Iron_ore
     ];
 }
 
@@ -78,14 +78,14 @@ function cargarDatos(clave) {
 }
 
 // Ejemplo de uso
-const inventario = new Inventory();
-inventario.getItem('Coal_ore').addAmount(10);
-inventario.getItem('Iron_ore').addAmount(5);
+const Inventory = new Inventory();
+Inventory.getItem('Coal_ore').addAmount(10);
+Inventory.getItem('Iron_ore').addAmount(5);
 
 // Guardar el inventario en localStorage
-guardarDatos('inventario', inventario);
+guardarDatos('inventory', Inventory);
 
 // Cargar el inventario desde localStorage
-const inventarioCargado = Inventory.fromJSON(cargarDatos('inventario'));
+const InventoryLoaded = Inventory.fromJSON(cargarDatos('Inventory'));
 
-console.log(inventarioCargado);
+console.log(InventoryLoaded);
