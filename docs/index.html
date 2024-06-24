@@ -9,6 +9,16 @@
     <script src="database.js"></script>
     <script type="module">
         import MininingSkills from './database.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            MiningSkill.items.forEach(item => {
+                const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
+                let p = document.createElement("p");
+                p.textContent = item.name;
+                container.appendChild(p);
+            });
+        });
+
     </script>
 </head>
 <body>
@@ -55,13 +65,6 @@
                             <img class="arrow" src="images/arrow-right.png" alt="">
                         </item>
                         <h4 class="separator"><span>Skill</span></h4>
-                        <script>
-                            MininingSkills.items.forEach(item => {
-                                var innerHTML = "";
-                                innerHTML += item.name;
-                                document.getElementById("mining-window").getElementsByTagName("div")[0].innerHTML += innerHTML;
-                            });
-                        </script>
                     </div>
                     <div class="col-31 flex-col gap8">
                         <img src="images/alchemist.png" alt="" class="banner">
