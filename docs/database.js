@@ -90,3 +90,4 @@ guardarDatos('inventory', Inventory);
 const InventoryLoaded = InventoryClass.fromJSON(cargarDatos('Inventory'));
 
 console.log(InventoryLoaded);
+console.log(MiningSkill.items);
