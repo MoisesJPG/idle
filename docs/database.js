@@ -1,9 +1,9 @@
 // Clase Item
 class Item {
 
-    constructor(name, amount = 0) {
+    constructor(name) {
         this.name = name;
-        this.amount = amount;
+        this.amount = 0;
     }
 
     addAmount(amount) { this.amount += amount; }
@@ -54,12 +54,13 @@ class MiningSkill {
 
     constructor(name) {
         this.name = name;
+        const MiningSkillInv = new InventoryClass();
+        this.items = [
+            MiningSkillInv.items.Coal_ore,
+            MiningSkillInv.items.Iron_ore
+        ];
     }
 
-    static items = [
-        InventoryClass.Coal_ore,
-        InventoryClass.Iron_ore
-    ];
 }
 
 // Funciones para guardar y cargar datos
