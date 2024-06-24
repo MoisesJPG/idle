@@ -51,14 +51,15 @@ class InventoryClass {
 
 // Clase MiningSkill
 class MiningSkill {
-
     constructor(name) {
         this.name = name;
+        const MiningSkillInv = new InventoryClass();
+        this.items = [
+            MiningSkillInv.items.Coal_ore,
+            MiningSkillInv.items.Iron_ore
+        ];
     }
-    static items = [
-        InventoryClass.items.Coal_ore,
-        InventoryClass.items.Iron_ore
-    ];
+    static
 
 }
 
@@ -87,6 +88,6 @@ guardarDatos('inventory', Inventory);
 
 // Cargar el inventario desde localStorage
 const InventoryLoaded = InventoryClass.fromJSON(cargarDatos('Inventory'));
-
+const Default_MiningSkill = new MiningSkill();
 console.log(InventoryLoaded);
-console.log(MiningSkill.items);
+console.log(Default_MiningSkill.items);
