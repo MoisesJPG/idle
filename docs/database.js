@@ -1,42 +1,35 @@
-// Clase Item
-class Item {
+class ItemData {
 
-    constructor(id, name, amount) {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
-    }
+    constructor(id, name) { this.id = id; this.name = name; }
 
+    GetID() { return this.id; }
+    GetName() { return this.name; }
+
+}
+
+const Items = {
+    Coal_Ore: new ItemData(0, "Coal Ore"),
+    Iron_Ore: new ItemData(1, "Iron Ore"),
+    Iron_Ingot: new ItemData(2, "Iron Ingot")
+}
+
+class InventoryItem {
+
+    constructor(item, amount) { this.item = item; this.amount = amount; }
+    
     addAmount(amount) { this.amount += amount; }
     setAmount(amount) { this.amount = amount; }
     removeAmount(amount) { this.amount -= amount; }
+    
+    toJSON() { return { id: this.item.id, name: this.item.name, amount: this.amount }; }
 
-    GetID(){
-        return this.id;
-    }
+    static fromJSON(data) { return new ItemData(data.id, data.name, data.amount); }
 
-    toJSON() {
-        return {
-            id: this.id,
-            name: this.name,
-            amount: this.amount
-        };
-    }
-
-    static fromJSON(data) {
-        return new Item(data.id, data.name, data.amount);
-    }
 }
 
-// Clase Inventory
 class InventoryClass {
 
-    constructor() {
-        this.items = {
-            Coal_ore: new Item(0, "Coal ore"),
-            Iron_ore: new Item(1, "Iron ore")
-        };
-    }
+    constructor() { this.items = []; }
 
     getItem(name) {
         return this.items[name];
@@ -55,27 +48,24 @@ class InventoryClass {
     }
 }
 
-// Clase MiningSkill
 class MiningSkill {
     constructor(name) {
         this.name = name;
-        const MiningSkillInv = new InventoryClass();
         this.items = [
-            MiningSkillInv.items.Coal_ore,
-            MiningSkillInv.items.Iron_ore
+            Items.Coal_Ore,
+            Items.Iron_Ore
         ];
     }
-    static
-
 }
 
-// Funciones para guardar y cargar datos
-function guardarDatos(clave, valor) {
+const _MiningSkill = new MiningSkill();
+
+function SaveData(clave, valor) {
     const valorString = typeof valor === 'object' ? JSON.stringify(valor) : valor;
     localStorage.setItem(clave, valorString);
 }
 
-function cargarDatos(clave) {
+function LoadData(clave) {
     const valor = localStorage.getItem(clave);
     try {
         return JSON.parse(valor);
@@ -90,11 +80,9 @@ Inventory.getItem('Coal_ore').addAmount(10);
 Inventory.getItem('Iron_ore').addAmount(5);
 
 // Guardar el inventario en localStorage
-guardarDatos('inventory', Inventory);
+SaveData('Inventory', Inventory);
 
 // Cargar el inventario desde localStorage
-const InventoryLoaded = InventoryClass.fromJSON(cargarDatos('Inventory'));
-const Default_MiningSkill = new MiningSkill();
-console.log(InventoryLoaded);
-console.log(Default_MiningSkill.items);
-export { Item, Inventory, Default_MiningSkill};
+const InventoryLoaded = InventoryClass.fromJSON(LoadData('Inventory'));
+
+export { Items, _MiningSkill};

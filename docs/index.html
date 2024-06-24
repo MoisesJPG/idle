@@ -9,13 +9,16 @@
     <script src="database.js"></script>
     <script type="module">
         
-        import MiningSkill from './database.js';
+        import { Items } from './database.js';
+
+        console.log(Items);
 
         function AddAmount(item, amount){
             item.AddAmount(1);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            return;
             const def_MiningSkiil = new MiningSkill();
             def_MiningSkiil.items.forEach(item => {
                 const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
@@ -23,7 +26,7 @@
                 innerHTML += '<item onclick="AddAmount(Inventory.Coal_ore, 1)">';
                 innerHTML += '   <img name="icon" class="icon" src="images/Stas.png" alt="">';
                 innerHTML += '   <div class="data">';
-                innerHTML += '       <h3 name="title" class="title">'+item.name+'</h3>';
+                innerHTML += '       <h3 name="title" class="title">'+item.GetName()+'</h3>';
                 innerHTML += '       <p>';
                 innerHTML += '           <span name="level" class="data-row">Lv. '+item.amount+'</span>';
                 innerHTML += '           <span name="exp" class="data-row">5 EXP</span>';
