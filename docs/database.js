@@ -7,6 +7,7 @@ class ItemData {
 
     GetID() { return this.id; }
     GetName() { return this.name; }
+    GetItemName() { return this.name.replace(" ", "_"); }
 
 }
 
@@ -16,7 +17,7 @@ const Items = {
     Iron_Ingot: new ItemData(2, "Iron Ingot")
 }
 
-class InventoryItem {
+class InventoryItemClass {
 
     constructor(item, amount) { this.item = item; this.amount = amount; }
     
@@ -24,9 +25,7 @@ class InventoryItem {
     setAmount(amount) { this.amount = amount; }
     removeAmount(amount) { this.amount -= amount; }
     
-    toJSON() { return { id: this.item.id, name: this.item.name, amount: this.amount }; }
-
-    static fromJSON(data) { return new ItemData(data.id, data.name, data.amount); }
+    toJSON() { return { id: this.item.GetID(), name: this.item.GetName(), amount: this.amount }; }
 
 }
 
@@ -69,7 +68,6 @@ function SaveData(clave, valor) {
     const valorString = typeof valor === 'object' ? JSON.stringify(valor) : valor;
     localStorage.setItem(clave, valorString);
 }
-
 function LoadData(clave) {
     const valor = localStorage.getItem(clave);
     try {
@@ -95,7 +93,7 @@ function ShowMiningSkill(){
     MiningSkill.items.forEach(item => {
         const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
         var innerHTML = '';
-        innerHTML += '<item onclick="AddAmount(Inventory.Coal_ore, 1)">';
+        innerHTML += '<item onclick="AddAmount('+item.GetID()+', 1)">';
         innerHTML += '   <img name="icon" class="icon" src="images/Stas.png" alt="">';
         innerHTML += '   <div class="data">';
         innerHTML += '       <h3 name="title" class="title">'+item.GetName()+'</h3>';
@@ -109,4 +107,8 @@ function ShowMiningSkill(){
         innerHTML += '</item>';
         container.innerHTML += innerHTML;
     });
+}
+function AddAmount(id, amount) {
+
+
 }
