@@ -53,7 +53,7 @@ class InventoryClass {
     }
 }
 
-class MiningSkill {
+class MiningSkillClass {
     constructor(name) {
         this.name = name;
         this.items = [
@@ -62,8 +62,8 @@ class MiningSkill {
         ];
     }
 }
-
-const _MiningSkill = new MiningSkill();
+const MiningSkill = new MiningSkillClass();
+console.log(MiningSkill.items);
 
 function SaveData(clave, valor) {
     const valorString = typeof valor === 'object' ? JSON.stringify(valor) : valor;
