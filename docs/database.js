@@ -90,4 +90,23 @@ SaveData('Inventory', Inventory);
 // Cargar el inventario desde localStorage
 const InventoryLoaded = InventoryClass.fromJSON(LoadData('Inventory'));
 
-export { Items, MiningSkill};
+document.addEventListener('DOMContentLoaded', () => {
+    const MiningSkill = new MiningSkillClass();
+    MiningSkill.items.forEach(item => {
+        const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
+        var innerHTML = '';
+        innerHTML += '<item onclick="AddAmount(Inventory.Coal_ore, 1)">';
+        innerHTML += '   <img name="icon" class="icon" src="images/Stas.png" alt="">';
+        innerHTML += '   <div class="data">';
+        innerHTML += '       <h3 name="title" class="title">'+item.GetName()+'</h3>';
+        innerHTML += '       <p>';
+        innerHTML += '           <span name="level" class="data-row">Lv. '+item.amount+'</span>';
+        innerHTML += '           <span name="exp" class="data-row">5 EXP</span>';
+        innerHTML += '           <span name="time" class="data-row"><img src="images/alchemist.png" alt="">15s</span>';
+        innerHTML += '       </p>';
+        innerHTML += '   </div>';
+        innerHTML += '   <img class="arrow" src="images/arrow-right.png" alt="">';
+        innerHTML += '</item>';
+        container.innerHTML += innerHTML;
+    });
+});
