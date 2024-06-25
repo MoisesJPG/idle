@@ -90,4 +90,4 @@ SaveData('Inventory', Inventory);
 // Cargar el inventario desde localStorage
 const InventoryLoaded = InventoryClass.fromJSON(LoadData('Inventory'));
 
-export { Items, _MiningSkill};
+export { Items, MiningSkill};
