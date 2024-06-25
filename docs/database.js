@@ -1,5 +1,8 @@
 class ItemData {
 
+    id = 0;
+    name = "";
+
     constructor(id, name) { this.id = id; this.name = name; }
 
     GetID() { return this.id; }
