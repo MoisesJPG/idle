@@ -16,8 +16,6 @@ const Items = {
     Iron_Ingot: new ItemData(2, "Iron Ingot")
 }
 
-console.log(Items);
-
 class InventoryItem {
 
     constructor(item, amount) { this.item = item; this.amount = amount; }
@@ -63,6 +61,8 @@ class MiningSkillClass {
     }
 }
 const MiningSkill = new MiningSkillClass();
+
+console.log(Items);
 console.log(MiningSkill.items);
 
 function SaveData(clave, valor) {
