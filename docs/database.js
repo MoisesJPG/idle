@@ -16,6 +16,8 @@ const Items = {
     Iron_Ingot: new ItemData(2, "Iron Ingot")
 }
 
+console.log(Items);
+
 class InventoryItem {
 
     constructor(item, amount) { this.item = item; this.amount = amount; }
