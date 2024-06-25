@@ -90,7 +90,7 @@ SaveData('Inventory', Inventory);
 // Cargar el inventario desde localStorage
 const InventoryLoaded = InventoryClass.fromJSON(LoadData('Inventory'));
 
-document.addEventListener('DOMContentLoaded', () => {
+function ShowMiningSkill(){
     const MiningSkill = new MiningSkillClass();
     MiningSkill.items.forEach(item => {
         const container = document.getElementById("mining-window").getElementsByTagName("div")[0];
@@ -109,4 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
         innerHTML += '</item>';
         container.innerHTML += innerHTML;
     });
-});
+}
