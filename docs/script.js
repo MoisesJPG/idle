@@ -269,7 +269,6 @@ class ItemList {
                 bonnus: 7
             })
         ]
-        console.log(this.items)
     }
     GetItem(name = ""){
         for (let itemID = 0; itemID < this.items.length; itemID++) {
