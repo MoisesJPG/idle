@@ -469,6 +469,7 @@ function ManagerAttributes(generate){
 
             AttributesElement.appendChild(newElement);
         }
+        ManagerAttributes(false);
     }else{
         for (var element of AttributesElement.getElementsByTagName('p')){
             const name = element.getAttribute('name');
@@ -487,6 +488,7 @@ function ManagerStats(generate){
             // Añade el nuevo párrafo al contenedor existente
             StatsElement.appendChild(newElement);
         }
+        ManagerStats(false);
     }else{
         for (var element of StatsElement.getElementsByTagName('p')){
             const name = element.getAttribute('name');
@@ -503,6 +505,7 @@ function ManagerTools(generate){
             element.getElementsByTagName("button")[0].addEventListener('click', () => EquipTool(new ItemData({type: tool.name})));
             ToolsElement.appendChild(element);
         }
+        ManagerTools(false);
     }else{
         for (var element of ToolsElement.getElementsByTagName('p')){
             const name = element.getAttribute('name');
