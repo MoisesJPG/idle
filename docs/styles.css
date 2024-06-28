@@ -146,24 +146,36 @@ separator span {
     width: 100%;
 }
 #Tools p button[class='enable'] {
-    margin: 0px;
-    padding: 4px 8px;
-    border-radius: 4px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
     border: 2px solid var(--primary-color-hl);
+    padding: 0;
+    height: 24px;
+    border-radius: 4px 4px 8px 8px;
     background-color: var(--primary-color-alt);
     color: var(--primary-color-hl);
-    font-size: 16px;
-    cursor: pointer;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+    width: calc(100% + 20px);
+    font-weight: bold;
 }
 #Tools p button[class='disable'] {
-    margin: 0px;
-    padding: 4px 8px;
-    border-radius: 4px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
+    padding: 0;
+    height: 24px;
+    border-radius: 4px 4px 8px 8px;
     border: 2px solid var(--primary-color-alt);
     background-color: var(--primary-color-deep);
     color: var(--primary-color-alt);
-    font-size: 16px;
-    cursor: pointer;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+    width: calc(100% + 20px);
+    font-weight: bold;
 }
 
 
