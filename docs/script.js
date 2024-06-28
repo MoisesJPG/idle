@@ -639,6 +639,7 @@ function EquipTool(item = new ItemData()){
 
     Tools.GetTool(item.type).item = item; 
     updateDisplay('Tools');
+    updateDisplay('Activities');
 
 }
 
