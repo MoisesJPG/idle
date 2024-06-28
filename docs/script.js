@@ -631,7 +631,7 @@ function ManagerActivities(generate){
         for (var element of ActivitiesElement.getElementsByClassName("activity")){
             const name = element.getAttribute('name');
             const item = Items.GetItem(name);
-            if(CheckMeltReqs(item) && CheckCraftReqs(item)){
+            if(CheckMeltReqs(item, false) && CheckCraftReqs(item, false)){
                 element.getElementsByTagName('button')[0].classList.add("enable");
                 element.getElementsByTagName('button')[0].classList.remove("disable");
             }else{
@@ -668,13 +668,13 @@ function UpgradeAttribute(attribute = new AttributeData()){
     }
 }
 
-function CheckMeltReqs(item = new ItemData({})){
+function CheckMeltReqs(item = new ItemData({}), send){
     let allReqs = 0;
     if(item.meltReq){
         for (const req of item.meltReq) {
             if(Items.GetItem(req.name).GetAmount() >= req.amount){
                 allReqs++;
-            }else{
+            }else if(send) { 
                 const element = document.createElement("p");
                 element.classList.add("material");
                 element.textContent = `${req.name} x${req.amount}`;
@@ -699,7 +699,7 @@ function CheckMeltReqs(item = new ItemData({})){
     }
     return true;
 }
-function CheckCraftReqs(item = new ItemData({})){
+function CheckCraftReqs(item = new ItemData({}), send){
     if(!item.toolReq.type){
         return true;
     }else{        
@@ -715,7 +715,7 @@ function CheckCraftReqs(item = new ItemData({})){
 }
 function ActivityEvent(resource, tool = "") {
     const item = Items.GetItem(resource);
-    if(CheckMeltReqs(item) && CheckCraftReqs(item)){
+    if(CheckMeltReqs(item, true) && CheckCraftReqs(item, true)){
         var time = item.time;
         console.log(Tools.GetTool(tool))
         time *= 1 - (Tools.GetTool(tool).item.bonnus || 0)/100;
@@ -886,16 +886,6 @@ function startProgressBar(item = new ItemData(), duration = 0) {
     }
 
     updateProgress();
-}
-
-
-function alternateDisplay(id){
-    const element = document.getElementById(id);
-    if (element.style.display == 'none'){
-        element.style.display = '';
-    }else{
-        element.style.display = 'none';
-    }
 }
 
 
