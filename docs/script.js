@@ -115,6 +115,7 @@ class ItemData {
     name = "";
     group = "";
     type = "";
+    grade = 0;
     meltReq = [];
     toolReq = {type: "", grade: 0};
     craftAmount = 0;
@@ -130,6 +131,7 @@ class ItemData {
         if(json.meltReq)     { this.meltReq =     json.meltReq;     } else { this.meltReq =     []; }
         if(json.toolReq)     { this.toolReq =     json.toolReq;     } else { this.toolReq =     []; }
         if(json.craftAmount) { this.craftAmount = json.craftAmount; } else { this.craftAmount =  0; }
+        if(json.grade)       { this.grade =       json.grade;       } else { this.grade =        0; }
         if(json.exp)         { this.exp =         json.exp;         } else { this.exp =          0; }
         if(json.time)        { this.time =        json.time;        } else { this.time =         0; }
         if(json.bonnus)      { this.bonnus =      json.bonnus;      } else { this.bonnus =       0; }
@@ -614,19 +616,13 @@ function ManagerActivities(generate){
     } else {
         for (var element of ActivitiesElement.getElementsByClassName("activity")){
             const name = element.getAttribute('name');
-            let reqs = 0;
-            for(const req of Items.GetItem(name).meltReq){
-                if(Items.GetItem(req.name).amount >= req.amount){
-                    reqs++;
-                }
-            }
-            if(reqs == Items.GetItem(name).meltReq.length){
+            const item = Items.GetItem(name);
+            if(CheckMeltReqs(item) && CheckCraftReqs(item)){
                 element.getElementsByTagName('button')[0].classList.add("enable");
                 element.getElementsByTagName('button')[0].classList.remove("disable");
             }else{
                 element.getElementsByTagName('button')[0].classList.remove("enable");
                 element.getElementsByTagName('button')[0].classList.add("disable");
-
             }
             /*
             element.getElementsByClassName("level")[0].textContent = Skills.GetSkill(name).level.toString();
@@ -688,10 +684,19 @@ function CheckMeltReqs(item = new ItemData({})){
     }
     return true;
 }
-
+function CheckCraftReqs(item = new ItemData({})){
+    var currentTool = Tools.GetTool(item.toolReq.type).item;
+    if(currentTool){
+        if(currentTool.grade >= item.toolReq.grade){
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
 function ActivityEvent(resource, tool = "") {
     const item = Items.GetItem(resource);
-    if(CheckMeltReqs(item)){
+    if(CheckMeltReqs(item) && CheckCraftReqs(item)){
         console.log(item.toolReq)
         var time = item.time;
         console.log(Tools.GetTool(tool))
