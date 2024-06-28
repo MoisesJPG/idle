@@ -685,18 +685,12 @@ function CheckMeltReqs(item = new ItemData({})){
     return true;
 }
 function CheckCraftReqs(item = new ItemData({})){
-    console.log(item.name, `Tool Req: ${JSON.stringify(item.toolReq)}`)
-    if(item.toolReq.type == 'undefined'){
+    console.log(item.name, `Tool Req: ${JSON.stringify(item.toolReq)}`, item.toolReq.type ? true: false);
+    if(item.toolReq == {}){
         return true;
     }else{        
-        console.log(item.name, `Tool Req: ${item.toolReq.type}`)
-
         var currentTool = Tools.GetTool(item.toolReq.type).item;
-        console.log(item.name, currentTool)
-
         if(currentTool){
-            console.log(item.name, `Tool Req Grade: ${currentTool.grade}`)
-
             if(currentTool.grade >= item.toolReq.grade){
                 return true;
             }
