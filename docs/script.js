@@ -298,6 +298,8 @@ class ToolData {
         this.skill = skill;
         this.item = item;
     }
+    ToJSON() { return {i: this.item}; }
+    FromJSON(json) { this.item = json["i"]; }
 }
 class ToolList {
     constructor(){
@@ -768,6 +770,12 @@ function GetJSON() {
     for (var skill of Skills.GetSkills()) {
         json["Skills"][skill.name.toLowerCase()] = skill.ToJSON();
     }
+
+    json["Tools"] = {};
+    for (var tool of Tools.GetTools()) {
+        json["Tools"][skill.name.toLowerCase()] = tool.ToJSON();
+    }
+
 
     return JSON.stringify(json);
 }
