@@ -658,7 +658,7 @@ function UpgradeAttribute(attribute = new AttributeData()){
 }
 
 function CheckMeltReqs(item = new ItemData({})){
-
+    console.log(item)
     let allReqs = 0;
     if(item.meltReq){
         for (const req of item.meltReq) {
