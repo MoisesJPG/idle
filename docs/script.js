@@ -685,7 +685,7 @@ function CheckMeltReqs(item = new ItemData({})){
     return true;
 }
 function CheckCraftReqs(item = new ItemData({})){
-    if(!item.toolReq){
+    if(item.toolReq.type == 'undefined'){
         console.log(item.name, "Tool Req: void")
         return true;
     }else{        
