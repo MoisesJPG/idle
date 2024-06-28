@@ -129,7 +129,7 @@ class ItemData {
         if(json.group)       { this.group =       json.group;       } else { this.group =       ""; }
         if(json.type)        { this.type =        json.type;        } else { this.type =        ""; }
         if(json.meltReq)     { this.meltReq =     json.meltReq;     } else { this.meltReq =     []; }
-        if(json.toolReq)     { this.toolReq =     json.toolReq;     } else { this.toolReq =     []; }
+        if(json.toolReq)     { this.toolReq =     json.toolReq;     } else { this.toolReq =     {}; }
         if(json.craftAmount) { this.craftAmount = json.craftAmount; } else { this.craftAmount =  0; }
         if(json.grade)       { this.grade =       json.grade;       } else { this.grade =        0; }
         if(json.exp)         { this.exp =         json.exp;         } else { this.exp =          0; }
@@ -685,7 +685,7 @@ function CheckMeltReqs(item = new ItemData({})){
     return true;
 }
 function CheckCraftReqs(item = new ItemData({})){
-    if(item.toolReq == []){
+    if(item.toolReq == {}){
         console.log(item, "void")
         return true;
     }else{
