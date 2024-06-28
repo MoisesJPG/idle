@@ -116,6 +116,7 @@ class ItemData {
     group = "";
     type = "";
     meltReq = [];
+    toolReq = {type: "", grade: 0};
     craftAmount = 0;
     amount = 0;
     exp = 0;
@@ -127,6 +128,7 @@ class ItemData {
         if(json.group)       { this.group =       json.group;       } else { this.group =       ""; }
         if(json.type)        { this.type =        json.type;        } else { this.type =        ""; }
         if(json.meltReq)     { this.meltReq =     json.meltReq;     } else { this.meltReq =     []; }
+        if(json.toolReq)     { this.toolReq =     json.toolReq;     } else { this.toolReq =     []; }
         if(json.craftAmount) { this.craftAmount = json.craftAmount; } else { this.craftAmount =  0; }
         if(json.exp)         { this.exp =         json.exp;         } else { this.exp =          0; }
         if(json.time)        { this.time =        json.time;        } else { this.time =         0; }
@@ -164,7 +166,8 @@ class ItemList {
                 craftAmount: 1, 
                 exp: 1,
                 time: 1000,
-                meltReq: []
+                meltReq: [],
+                toolReq: { type: "Pickaxe", grade: 1 }
             }),
             new ItemData( { name: "Coal", group: "Miner", 
                 craftAmount: 1, 
@@ -228,6 +231,7 @@ class ItemList {
                     { amount: 5, name: "Oak Planks" }
                 ],
                 type: "Pickaxe",
+                grade: 1,
                 bonnus: 5
             }),
             new ItemData( { name: "Stone Pickaxe", group: "Craftsman", 
@@ -653,10 +657,8 @@ function UpgradeAttribute(attribute = new AttributeData()){
     }
 }
 
-let activityInProgress = false;
-function ActivityEvent(resource, tool = "") {
+function CheckMeltReqs(item = new ItemData({})){
 
-    const item = Items.GetItem(resource);
     let allReqs = 0;
     if(item.meltReq){
         for (const req of item.meltReq) {
@@ -683,31 +685,38 @@ function ActivityEvent(resource, tool = "") {
     }
     if(allReqs != item.meltReq.length){
         activityInProgress = false;
-        return;
-    }        
-    activityInProgress = true;
+        return false;
+    }
+    return true;
+}
 
-    var time = item.time;
-    console.log(Tools.GetTool(tool))
-    time *= 1 - (Tools.GetTool(tool).item.bonnus || 0)/100;
-    time = time <= 0 ? 1: time;
-    startProgressBar(item,time);
-    //SendPush("Actividad finalizada","Mundo", time);
-    setTimeout(() => {
-        item.AddAmount(item.craftAmount);
-        Skills.GetSkill(item.group).AddExperience(item.exp);
+function ActivityEvent(resource, tool = "") {
+    const item = Items.GetItem(resource);
+    if(CheckMeltReqs(resource)){
+        console.log(item.toolReq)
+        var time = item.time;
+        console.log(Tools.GetTool(tool))
+        time *= 1 - (Tools.GetTool(tool).item.bonnus || 0)/100;
+        time = time <= 0 ? 1: time;
 
-        for (const req of item.meltReq) {
-            Items.GetItem(req.name).RemoveAmount(req.amount);
-        }
+        startProgressBar(item,time);
 
-        updateDisplay('Skills');
-        updateDisplay('Inventory');
-        updateDisplay('Activities');
-        activityInProgress = false;
+        //SendPush("Actividad finalizada","Mundo", time);
 
+        setTimeout(() => {
+            item.AddAmount(item.craftAmount);
+            Skills.GetSkill(item.group).AddExperience(item.exp);
 
-    }, time);
+            for (const req of item.meltReq) {
+                Items.GetItem(req.name).RemoveAmount(req.amount);
+            }
+
+            updateDisplay('Skills');
+            updateDisplay('Inventory');
+            updateDisplay('Activities');
+
+        }, time);
+    }
 
 }
 
