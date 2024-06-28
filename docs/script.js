@@ -613,7 +613,6 @@ function ManagerActivities(generate){
         ManagerActivities(false);
     } else {
         for (var element of ActivitiesElement.getElementsByClassName("activity")){
-            console.log(element);
             const name = element.getAttribute('name');
             let reqs = 0;
             for(const req of Items.GetItem(name).meltReq){
