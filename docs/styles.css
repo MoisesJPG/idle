@@ -141,7 +141,7 @@ separator span {
     text-overflow: ellipsis;
     overflow-y: clip;
 }
-#Inventory p button{
+#Tools p button{
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
@@ -157,7 +157,7 @@ separator span {
     width: calc(100% + 20px);
     font-weight: bold;
 }
-#Inventory p button:hover {
+#Tools p button:hover {
     border: 2px solid var(--primary-color-hl);
     background-color: var(--primary-color);
     color: var(--primary-color-hl);
