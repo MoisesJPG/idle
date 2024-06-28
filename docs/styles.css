@@ -125,7 +125,7 @@ separator span {
 }
 #Tools p {
     width: 96px;
-    height: 36px;
+    height: calc(54px);
     display: flex;
     flex-direction: column;
     padding: 8px;
@@ -133,13 +133,16 @@ separator span {
     border: 2px solid var(--primary-color-hl);
     background-color: var(--primary-color-alt);
     max-width: calc(50% - 24px);
-    justify-content: flex-end;
+    gap: 4px;
+    align-items: center;
 }
 #Tools p span{
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
     overflow-y: clip;
+    flex: 0 0 auto;
+    width: 100%;
 }
 #Tools p button{
     white-space: nowrap;
