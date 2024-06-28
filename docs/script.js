@@ -650,7 +650,21 @@ function ManagerActivities(generate){
 
 function EquipTool(item = new ItemData()){
 
-    Tools.GetTool(item.type).item = item;
+    if(Tools.GetTool(item.type).item === item){
+        Tools.GetTool(item.type).item = new ItemData({type: item.type});
+        for (const element of InventoryElement.getElementsByTagName('p')){
+            if(element.getAttribute('name') === item.name){
+                element.getElementsByTagName('button')[0].textContent = 'equip'
+            }
+        }
+    }else{
+        Tools.GetTool(item.type).item = item;
+        for (const element of InventoryElement.getElementsByTagName('p')){
+            if(element.getAttribute('name') === item.name){
+                element.getElementsByTagName('button')[0].textContent = 'Unequip'
+            }
+        }
+    }
 
     updateDisplay('Tools');
     updateDisplay('Activities');
