@@ -696,7 +696,6 @@ function CheckMeltReqs(item = new ItemData({})){
     return true;
 }
 function CheckCraftReqs(item = new ItemData({})){
-    console.log(item.name, `Tool Req: ${JSON.stringify(item.toolReq)}`, item.toolReq.type ? true: false);
     if(!item.toolReq.type){
         return true;
     }else{        
