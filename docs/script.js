@@ -496,7 +496,7 @@ function ManagerStats(generate){
 }
 function ManagerTools(generate){
     if(generate){
-        for(var tool of Tools.GetTools()){
+        for(const tool of Tools.GetTools()){
             var element = document.createElement('p');
             element.setAttribute('name', tool.name);
             element.innerHTML =  `<span class="name"></span><span>+<span class="amount">${tool.item.bonnus}</span>% ${tool.skill} Exp.</span><button>Unequip</button>`;
