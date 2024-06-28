@@ -141,6 +141,28 @@ separator span {
     text-overflow: ellipsis;
     overflow-y: clip;
 }
+#Inventory p button{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
+    border: 2px solid var(--primary-color-hl);
+    padding: 0;
+    height: 24px;
+    border-radius: 4px 4px 8px 8px;
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    text-transform: uppercase;
+    flex: 0 0 auto;
+    width: calc(100% + 20px);
+    font-weight: bold;
+}
+#Inventory p button:hover {
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color);
+    color: var(--primary-color-hl);
+}
+
 
 
 
