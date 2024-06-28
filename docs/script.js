@@ -782,7 +782,7 @@ function GetJSON() {
 
     json["Tools"] = {};
     for (var tool of Tools.GetTools()) {
-        json["Tools"][skill.name.toLowerCase()] = tool.ToJSON();
+        json["Tools"][tool.name.toLowerCase()] = tool.ToJSON();
     }
 
 
