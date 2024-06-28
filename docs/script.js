@@ -691,7 +691,7 @@ function CheckMeltReqs(item = new ItemData({})){
 
 function ActivityEvent(resource, tool = "") {
     const item = Items.GetItem(resource);
-    if(CheckMeltReqs(resource)){
+    if(CheckMeltReqs(item)){
         console.log(item.toolReq)
         var time = item.time;
         console.log(Tools.GetTool(tool))
