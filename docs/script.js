@@ -497,13 +497,21 @@ function ManagerStats(generate){
 function ManagerTools(generate){
     if(generate){
         for(var tool of Tools.GetTools()){
-            ToolsElement.innerHTML += `<p name="${tool.name}"><span class="name"></span><span>+<span class="amount">${tool.item.bonnus}</span>% ${tool.skill} Exp.</span></p>`;
+            var element = document.createElement('p');
+            element.innerHTML +=  `<p name="${tool.name}"><span class="name"></span><span>+<span class="amount">${tool.item.bonnus}</span>% ${tool.skill} Exp.</span><button>Unequip</button></p>`;
+            element.getElementsByTagName("button")[0].addEventListener('click', () => EquipTool(new ItemData({})));
+            ToolsElement.appendChild(element);
         }
     }else{
         for (var element of ToolsElement.getElementsByTagName('p')){
             const name = element.getAttribute('name');
             element.getElementsByClassName("name")[0].textContent = Tools.GetTool(name).item.name;
             element.getElementsByClassName("amount")[0].textContent = Tools.GetTool(name).item.bonnus || 0;
+            if(Tools.GetTool(name).item){
+                element.getElementsByTagName("button")[0].style.display = '';
+            }else{
+                element.getElementsByTagName("button")[0].style.display = 'none';
+            }
         }
     }
 }
@@ -637,7 +645,8 @@ function ManagerActivities(generate){
 
 function EquipTool(item = new ItemData()){
 
-    Tools.GetTool(item.type).item = item; 
+    Tools.GetTool(item.type).item = item;
+
     updateDisplay('Tools');
     updateDisplay('Activities');
 
@@ -703,7 +712,6 @@ function CheckCraftReqs(item = new ItemData({})){
 function ActivityEvent(resource, tool = "") {
     const item = Items.GetItem(resource);
     if(CheckMeltReqs(item) && CheckCraftReqs(item)){
-        console.log(item.toolReq)
         var time = item.time;
         console.log(Tools.GetTool(tool))
         time *= 1 - (Tools.GetTool(tool).item.bonnus || 0)/100;
