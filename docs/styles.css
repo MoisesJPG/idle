@@ -285,22 +285,55 @@ separator span {
 }
 #Activities .activities .activity {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
+    flex-direction: column;
+    height: calc(48px + 8px);
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: flex-start;
+    gap: 4px;
 }
 #Activities .activities .activity span {
-
+    text-align: start;
+    height: 16px;
+    width: calc(100% - 4px - 55px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+#Activities .activities .activity .reqs {
+    text-align: start;
+    height: calc(32px + 4px);
+    width: calc(100% - 4px - 55px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+#Activities .activities .activity span a {
+    font-size: 8px;
+    padding: 2px 4px;
+    border: 2px solid var(--primary-color-hl);
+    border-radius: 4px;
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    font-weight: bold;
+    height: 8px;
+    display: inline-block;
+    flex: 0 0 auto;
 }
 #Activities .activities .activity button[class='enable'] {
     margin: 0px;
-    padding: 4px 8px;
+    padding: 4px 4px;
     border-radius: 4px;
     border: 2px solid var(--primary-color-hl);
     background-color: var(--primary-color-alt);
     color: var(--primary-color-hl);
     font-size: 16px;
     cursor: pointer;
+    flex: 0 0 auto;
+    width: 55px;
 }
 #Activities .activities .activity button[class='enable']:hover {
     border: 2px solid var(--primary-color-hl);
@@ -309,13 +342,15 @@ separator span {
 }
 #Activities .activities .activity button[class='disable'] {
     margin: 0px;
-    padding: 4px 8px;
+    padding: 4px 4px;
     border-radius: 4px;
     border: 2px solid var(--primary-color-alt);
     background-color: var(--primary-color-deep);
     color: var(--primary-color-alt);
     font-size: 16px;
     cursor: pointer;
+    flex: 0 0 auto;
+    width: 55px;
 }
 
 

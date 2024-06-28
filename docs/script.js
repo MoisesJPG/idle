@@ -168,38 +168,43 @@ class ItemList {
                 craftAmount: 1, 
                 exp: 1,
                 time: 1000,
-                meltReq: [],
                 toolReq: { type: "Pickaxe", grade: 1 }
             }),
             new ItemData( { name: "Coal", group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 2000
+                time: 2000,
+                toolReq: { type: "Pickaxe", grade: 1 }
             }),
             new ItemData( { name: "Iron ore", group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 3000
+                time: 3000,
+                toolReq: { type: "Pickaxe", grade: 2 }
             }),
             new ItemData( { name: "Gold ore", group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 3000
+                time: 3000,
+                toolReq: { type: "Pickaxe", grade: 3 }
             }),
             new ItemData( { name: "Amatyst ore", group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 3000
+                time: 3000,
+                toolReq: { type: "Pickaxe", grade: 3 }
             }),
             new ItemData( { name: "Esmerald ore", group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 3000
+                time: 3000,
+                toolReq: { type: "Pickaxe", grade: 4 }
             }),
             new ItemData( { name: "Diamond ore",  group: "Miner", 
                 craftAmount: 1, 
                 exp: 1, 
-                time: 3000
+                time: 3000,
+                toolReq: { type: "Pickaxe", grade: 4 }
             }),
             
             new ItemData( { name: "Oak Wood", group: "Lumberjack",
@@ -213,9 +218,31 @@ class ItemList {
 
             new ItemData("Tuna",            1, "Fisherman",  1, 3000, [], "", 0),
 
-            new ItemData("Iron bar",        1, "Melter",     1, 3000, [new Req(1, "Coal"), new Req(5, "Iron ore")], "", 0),
             new ItemData("Gold bar",        1, "Melter",     1, 3000, [new Req(1, "Coal"), new Req(5, "Gold ore")], "", 0),
             */
+
+            /*--------*/
+            /* MELTER */
+            /*--------*/
+            new ItemData( { name: "Iron Bar", group: "Melter", 
+                craftAmount: 1, 
+                exp: 1, 
+                time: 3000,
+                meltReq: [
+                    { amount: 1, name: "Coal" },
+                    { amount: 5, name: "Iron Ore" }
+                ]
+            }),
+            new ItemData( { name: "Gold Bar", group: "Melter", 
+                craftAmount: 1, 
+                exp: 1, 
+                time: 3000,
+                meltReq: [
+                    { amount: 1, name: "Coal" },
+                    { amount: 5, name: "Gold Ore" }
+                ]
+            }),
+
             new ItemData( { name: "Oak Planks", group: "Craftsman",
                 craftAmount: 4, 
                 exp: 1, 
@@ -224,7 +251,10 @@ class ItemList {
                     {amount: 1, name: "Oak Wood"}
                 ]
             }),
-            
+
+            /*----------*/
+            /* PICKAXES */
+            /*----------*/
             new ItemData( { name: "Wooden Pickaxe", group: "Craftsman", 
                 craftAmount: 1, 
                 exp: 1, 
@@ -245,8 +275,25 @@ class ItemList {
                     { amount: 3, name: "Stone" }
                 ], 
                 type: "Pickaxe", 
+                grade: 2,
                 bonnus: 7
             }),
+            new ItemData( { name: "Iron Pickaxe", group: "Craftsman", 
+                craftAmount: 1, 
+                exp: 1, 
+                time: 3000,
+                meltReq: [
+                    { amount: 2, name: "Oak Planks" }, 
+                    { amount: 3, name: "Iron Bar" }
+                ], 
+                type: "Pickaxe", 
+                grade: 3,
+                bonnus: 9
+            }),
+
+            /*------*/
+            /* AXES */
+            /*------*/
             new ItemData( { name: "Wooden Axe", group: "Craftsman", 
                 craftAmount: 1, 
                 exp: 1, 
@@ -522,15 +569,14 @@ function ManagerTools(generate){
         }
     }
 }
+
 function ManagerInventory(generate){
     if(generate){
         for(const item of Items.GetItems()){
-            if(
-                item.type == "Pickaxe" ||
-                item.type == "Axe"
-            ){
+            if( item.type == "Pickaxe" || item.type == "Axe" ){
                 var element = document.createElement("p");
                 element.setAttribute("name", item.name);
+                element.setAttribute("title", `x${item.amount} ${item.name}`)
                 element.style.display = "none";
                 element.innerHTML += `<span>${item.name}</span><span class="amount">0</span><button>Equip</button>`;
                 element.getElementsByTagName("button")[0].addEventListener('click', () => EquipTool(item) );
@@ -538,6 +584,7 @@ function ManagerInventory(generate){
             }else{
                 var element = document.createElement("p");
                 element.setAttribute("name", item.name);
+                element.setAttribute("title", `x${item.amount} ${item.name}`)
                 element.style.display = "none";
                 element.innerHTML += `<span>${item.name}</span><span class="amount">0</span>`;
                 InventoryElement.appendChild(element);
@@ -553,14 +600,21 @@ function ManagerInventory(generate){
                 element.style.display = '';
             }
             element.getElementsByClassName("amount")[0].textContent = formatNumberWithDots(Items.GetItem(name).GetAmount());
-            if(Tools.GetTool(Items.GetItem(name).type).item.name === name){
-                element.getElementsByTagName('button')[0].textContent = "UNEQUIP"
-            }else{
-                element.getElementsByTagName('button')[0].textContent = "EQUIP"
+            
+            console.log(Tools.GetTool(Items.GetItem(name).type) ? "a": "b")
+
+            if(Tools.GetTool(Items.GetItem(name).type)){
+                if(Tools.GetTool(Items.GetItem(name).type).item.name === name){
+                    element.getElementsByTagName('button')[0].textContent = "UNEQUIP"
+                }else{
+                    element.getElementsByTagName('button')[0].textContent = "EQUIP"
+                }
             }
+
         }
     }
 }
+
 function ManagerSkills(generate){
     if(generate){
         for(const skill of Skills.GetSkills()){
@@ -585,12 +639,16 @@ function ManagerSkills(generate){
 function ManagerActivities(generate){
     if(generate){
         for (var activity of Activities.GetActivities()){
-            ActivitiesElement.innerHTML += `<div name='${activity.name}' class="activities"><h3 class='title'>${activity.name}</h3></div>`;
+            ActivitiesElement.innerHTML += `
+                <div name='${activity.name}' class="activities">
+                    <h3 class='title'>${activity.name}</h3>
+                </div>
+            `;
         }
         for(const item of Items.GetItems()){
             for (let divID = 0; divID < ActivitiesElement.getElementsByTagName("div").length; divID++) {
-                var element = ActivitiesElement.getElementsByTagName("div")[divID];
-                var elementName = element.getAttribute("name").toString().toLowerCase()
+                var activityElement = ActivitiesElement.getElementsByTagName("div")[divID];
+                var elementName = activityElement.getAttribute("name").toString().toLowerCase()
                 const itemGroup = item.group.toString().toLowerCase();
                 const tool = (skill) => {
                     switch (skill) {
@@ -604,29 +662,29 @@ function ManagerActivities(generate){
                 }
                 if(elementName === itemGroup){
                     // Crea el párrafo
-                    const newElement = document.createElement('p');
-                    newElement.setAttribute('name', item.name)
-                    newElement.classList.add('activity');
-    
-                    // Crea el primer span
-                    const spanName = document.createElement('span');
-                    spanName.textContent = item.name;
-                    newElement.appendChild(spanName);
-    
-                    // Crea el botón
-                    const button = document.createElement('button');
-                    button.textContent = Activities.GetActivity(itemGroup).verb;
-    
-                    // Añade el botón al párrafo
-                    newElement.appendChild(button);
-    
-    
-                    // Añade un event listener al párrafo para la acción de minar
-                    newElement.addEventListener('click', () => ActivityEvent(item.name, tool(itemGroup)));
-    
-                    // Añade el nuevo párrafo al contenedor existente
-                    element.appendChild(newElement);
-    
+                    const element = document.createElement('p');
+                    element.setAttribute('name', item.name)
+                    element.classList.add('activity');
+                    element.innerHTML = `
+                        <span>${item.name}</span>
+                        <span class="reqs"></span>
+                        <button>${Activities.GetActivity(itemGroup).verb}</button>
+                    `;
+
+                    if(Items.GetItem(item.name).toolReq.type != undefined){
+                        const req = Items.GetItem(item.name).toolReq;
+                        var text = `${req.type} G${req.grade}`;
+                        element.getElementsByClassName('reqs')[0].innerHTML += `<a title="${text}">${text}</a>`;
+                    }
+
+                    for (const req of Items.GetItem(item.name).meltReq){
+                        var text = `x${req.amount} ${req.name}`;
+                        element.getElementsByClassName('reqs')[0].innerHTML += `<a title="${text}">${text}</a>`;
+                    }
+                    element.getElementsByTagName("button")[0].addEventListener('click', () => ActivityEvent(item.name, tool(itemGroup)));
+
+
+                    activityElement.appendChild(element);
                     break;
                 }
     
@@ -674,6 +732,7 @@ function EquipTool(item = new ItemData()){
     }
 
     updateDisplay('Tools');
+    updateDisplay('Inventory');
     updateDisplay('Activities');
 
 }
@@ -763,29 +822,18 @@ function ActivityEvent(resource, tool = "") {
 }
 
 
-function GetJSON() {
-    var json = {};
-
-    json["Inventory"] = {};
-    for (var item of Items.GetItems()) {
-        json["Inventory"][item.name.toLowerCase()] = item.ToJSON();
-    }
-
-    json["Skills"] = {};
-    for (var skill of Skills.GetSkills()) {
-        json["Skills"][skill.name.toLowerCase()] = skill.ToJSON();
-    }
-
-    json["Tools"] = {};
-    for (var tool of Tools.GetTools()) {
-        json["Tools"][tool.name.toLowerCase()] = tool.ToJSON();
-    }
-
-
-    return JSON.stringify(json);
-}
 function SaveData(){
-    localStorage.setItem("db", GetJSON());
+    var json = {
+        Inventory: {},
+        Skills: {},
+        Tools: {}
+    };
+
+    Items.GetItems().forEach(item => { json.Inventory[item.name.toLowerCase()] = item.ToJSON();})
+    Skills.GetSkills().forEach(skill => { json.Skills[skill.name.toLowerCase()] = skill.ToJSON();})
+    Tools.GetTools().forEach(tool => {json.Tools[tool.name.toLowerCase()] = tool.ToJSON();})
+
+    localStorage.setItem("db", JSON.stringify(json));
 }
 function LoadData(){
 
@@ -793,11 +841,14 @@ function LoadData(){
 
         const json = JSON.parse(localStorage.getItem("db"));
 
-        for (var item of Items.GetItems()){
-            if(json["Inventory"][item.name.toLowerCase()]){
-                item.FromJSON(json["Inventory"][item.name.toLowerCase()])
+        if(json["Inventory"]){
+            for (var item of Items.GetItems()){
+                if(json["Inventory"][item.name.toLowerCase()]){
+                    item.FromJSON(json["Inventory"][item.name.toLowerCase()])
+                }
             }
         }
+        
         if(json["Skills"]){
             for (var skill of Skills.GetSkills()){
                 if(json["Skills"][skill.name.toLowerCase()]){
@@ -805,6 +856,15 @@ function LoadData(){
                 }
             }
         }
+
+        if(json["Tools"]){
+            for (var tool of Tools.GetTools()){
+                if(json["Tools"][tool.name.toLowerCase()]){
+                    tool.FromJSON(json["Tools"][tool.name.toLowerCase()])
+                }
+            }
+        }
+
     }
 }
 
