@@ -500,7 +500,7 @@ function ManagerTools(generate){
             var element = document.createElement('p');
             element.setAttribute('name', tool.name);
             element.innerHTML =  `<span class="name"></span><span>+<span class="amount">${tool.item.bonnus}</span>% ${tool.skill} Exp.</span><button>Unequip</button>`;
-            element.getElementsByTagName("button")[0].addEventListener('click', () => EquipTool(new ItemData({})));
+            element.getElementsByTagName("button")[0].addEventListener('click', () => EquipTool(new ItemData({type: tool.name})));
             ToolsElement.appendChild(element);
         }
     }else{
