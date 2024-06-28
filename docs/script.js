@@ -646,6 +646,7 @@ function ManagerActivities(generate){
 
 function EquipTool(item = new ItemData()){
 
+    console.log(item);
     Tools.GetTool(item.type).item = item;
 
     updateDisplay('Tools');

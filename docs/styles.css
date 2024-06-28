@@ -141,6 +141,7 @@ separator span {
     overflow-x: hidden;
     text-overflow: ellipsis;
     overflow-y: clip;
+    height: 16px;
     flex: 0 0 auto;
     width: 100%;
 }
