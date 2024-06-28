@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFK RPG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <h1>AFK RPG</h1>
+        
+        <button id="subscribe">Suscribirse a Notificaciones</button>
+        <button id="notify-later">Enviar Notificación en 5s</button>
+
+        <separator><span>Character</span></separator>
+        <div class="stats">
+            <p>Nivel: <span id="level">1</span></p>
+            <p>Exp. <span><span id="experience">0</span>/<span id="experienceMax">0</span></span></p>
+            <p>Puntos de Estadísticas: <span id="statPoints">0</span></p>
+            <p><span>Money</span><span id="money">0</span></p>
+        </div>
+
+
+        <separator><span>Attributes</span></separator>
+        <div id="Attributes"></div>
+
+        
+        <separator><span>Stats</span></separator>
+        <div id="Stats"></div>
+
+
+        <separator><span>Tools</span></separator>
+        <div id="Tools"></div>
+
+        <separator><span>Inventory</span></separator>
+        <div id="Inventory"></div>
+
+
+        <separator><span>Skills</span></separator>
+        <div id="Skills"></div>
+
+
+        <separator><span>Activities</span></separator>
+        <div id="Activities"></div>
+        
+        <separator></separator>
+        <div id="activity-progress-space"></div>
+        <div id="downEvents">
+            <div id="dont-materials" style="display: none;"></div>
+            <div id="activity-progress">
+                <p class="material"></p>
+                <div class="progress">
+                    <div class="progressBar" style="width: 25%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!--<script src="app.js"></script>-->
+
+</body>
+</html>

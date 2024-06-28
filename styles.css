@@ -1,0 +1,374 @@
+:root{
+    --primary-color:        hsl(225 50% 25% / 1);
+    --primary-color-alt:    hsl(225 50% 50% / 1);
+    --primary-color-hl:     hsl(225 50% 75% / 1);
+    --primary-color-deep:   hsl(225 50% 11.5% / 1);
+}
+
+* {
+    margin: 0;
+    user-select: none;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color-deep);
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    height: calc(100vh - 16px);
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px;
+    flex-direction: column;
+}
+.container {
+    background-color: var(--primary-color);
+    padding: 16px;
+    width: calc(512px * 1.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--primary-color-deep);
+    overflow-y: auto;
+    max-width: calc(100% - 32px);
+    max-height: calc(100% - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+
+
+/*-----------*/
+/* SEPARATOR */
+/*-----------*/
+separator{
+    border-top: 1px solid var(--primary-color-alt);
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(16px + 16px);
+    margin-bottom: 16px;
+    width: 100%;
+    border-bottom: 1px solid var(--primary-color-alt);
+}
+separator span {
+    background-color: var(--primary-color);
+    padding: 2px 12px;
+    color: var(--primary-color-hl);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+/*------------*/
+/* ATTRIBUTES */
+/*------------*/
+#Attributes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;   
+}
+#Attributes .attribute {
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+}
+#Attributes .attribute button {
+    margin: 0px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+/*-------*/
+/* STATS */
+/*-------*/
+#Stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+#Stats p{
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+
+
+/*-------*/
+/* TOOLS */
+/*-------*/
+#Tools {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+#Tools p {
+    width: 96px;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color-alt);
+    max-width: calc(50% - 24px);
+    justify-content: flex-end;
+}
+#Tools p span{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
+}
+
+
+
+/*-----------*/
+/* INVENTORY */
+/*-----------*/
+#Inventory {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+#Inventory p {
+    width: 96px;
+    height: calc(54px);
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color-alt);
+    max-width: calc(50% - 24px);
+    gap: 4px;
+    align-items: center;
+}
+#Inventory p span{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
+    height: 16px;
+    flex: 0 0 auto;
+    width: 100%;
+}
+#Inventory p button{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-y: clip;
+    border: 2px solid var(--primary-color-hl);
+    padding: 0;
+    height: 24px;
+    border-radius: 4px 4px 8px 8px;
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    text-transform: uppercase;
+    flex: 0 0 auto;
+    width: calc(100% + 20px);
+    font-weight: bold;
+}
+#Inventory p button:hover {
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color);
+    color: var(--primary-color-hl);
+}
+
+
+
+/*--------*/
+/* SKILLS */
+/*--------*/
+#Skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+#Skills .skill {
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+
+
+/*------------*/
+/* ACTIVITIES */
+/*------------*/
+#Activities {
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+#Activities .activities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    width: 256px;
+    max-width: 100%;
+}
+#Activities .activities .title {
+    padding: 8px;
+}
+#Activities .activities .activity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+#Activities .activities .activity span {
+
+}
+#Activities .activities .activity button[class='enable'] {
+    margin: 0px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    font-size: 16px;
+    cursor: pointer;
+}
+#Activities .activities .activity button[class='disable'] {
+    margin: 0px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 2px solid var(--primary-color-alt);
+    background-color: var(--primary-color-deep);
+    color: var(--primary-color-alt);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+#downEvents {
+    position: absolute;
+    bottom: 24px;
+    border-radius: 4px;
+    display: flex; /* Oculta la barra de progreso por defecto */
+    flex-direction: column;
+    pointer-events: none;
+    width: calc(512px * 1.5 - 15px);
+    max-width: calc(100% - 53px);
+}
+/**/
+/**/
+/**/
+#dont-materials{
+    border-radius: 4px;
+    display: flex; /* Oculta la barra de progreso por defecto */
+    flex-direction: column;
+    padding: 4px;
+    background-color: hsl(225 50% 25% / 1);
+    gap: 4px;
+    border: 1px solid hsl(225 50% 50% / 1);
+}
+#dont-materials .material{
+    height: 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: start;
+    color: hsl(0, 50%, 75%);
+    transition: display 1s;
+
+}
+/*-------------------*/
+/* ACTIVITY PROGRESS */
+/*-------------------*/
+#activity-progress{
+    position: sticky;
+    bottom: 0;
+    width: calc(100% - 8px - 2px);
+    border-radius: 4px;
+    height: 36px;
+    display: none; /* Oculta la barra de progreso por defecto */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px;
+    background-color: hsl(225 50% 25% / 1);
+    gap: 4px;
+    border: 1px solid hsl(225 50% 50% / 1);
+}
+#activity-progress-space {
+    height: calc(36px + 9px);
+    width: 100%;
+    flex: 0 0 auto;
+}
+#activity-progress .material{
+    height: 16px;
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: start;
+    color: hsl(235 50% 75% / 1);
+}
+#activity-progress .progress {
+    height: calc(16px - 2px);
+    width: calc(100% - 2px);
+    background-color: hsl(225 50% 12.5% / 1);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid hsl(225 50% 50% / 1);
+}
+#activity-progress .progress .progressBar{
+    background-color: hsl(225 50% 75% / 1);
+    transition: width 0.1s;
+    height: 100%;
+    border-right: 1px solid hsl(225 50% 50% / 1);
+}
+
+
+
+
+
+/*
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-hl);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 2px solid var(--primary-color-deep);
+    background-color: var(--primary-color-alt);
+    color: var(--primary-color-deep);
+}
