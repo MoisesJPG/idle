@@ -161,6 +161,11 @@ separator span {
     width: calc(100% + 20px);
     font-weight: bold;
 }
+#Tools p button[class='enable']:hover {
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color);
+    color: var(--primary-color-hl);
+}
 #Tools p button[class='disable'] {
     white-space: nowrap;
     overflow-x: hidden;
@@ -296,6 +301,11 @@ separator span {
     color: var(--primary-color-hl);
     font-size: 16px;
     cursor: pointer;
+}
+#Activities .activities .activity button[class='enable']:hover {
+    border: 2px solid var(--primary-color-hl);
+    background-color: var(--primary-color);
+    color: var(--primary-color-hl);
 }
 #Activities .activities .activity button[class='disable'] {
     margin: 0px;
