@@ -508,9 +508,9 @@ function ManagerTools(generate){
             const name = element.getAttribute('name');
             element.getElementsByClassName("name")[0].textContent = Tools.GetTool(name).item.name;
             element.getElementsByClassName("amount")[0].textContent = Tools.GetTool(name).item.bonnus || 0;
-            if(Tools.GetTool(name).item){
+            if(Tools.GetTool(name).item.name){
                 element.getElementsByTagName("button")[0].classList.add("enable")
-                element.getElementsByTagName("button")[0].classList.remove("disenable")
+                element.getElementsByTagName("button")[0].classList.remove("disable")
             }else{
                 element.getElementsByTagName("button")[0].classList.add("disable")
                 element.getElementsByTagName("button")[0].classList.remove("enable")
