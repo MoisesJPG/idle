@@ -553,14 +553,10 @@ function ManagerInventory(generate){
                 element.style.display = '';
             }
             element.getElementsByClassName("amount")[0].textContent = formatNumberWithDots(Items.GetItem(name).GetAmount());
-            for(const tool of Tools.GetTools()){
-                if(Items.GetItem(name).type){
-                    if(name === tool.item.name){
-                        element.getElementsByTagName('button')[0].textContent = "UNEQUIP"
-                    }else{
-                        element.getElementsByTagName('button')[0].textContent = "EQUIP"
-                    }
-                }
+            if(Tools.GetTool(Items.GetItem(name).type).item.name === name){
+                element.getElementsByTagName('button')[0].textContent = "UNEQUIP"
+            }else{
+                element.getElementsByTagName('button')[0].textContent = "EQUIP"
             }
         }
     }
