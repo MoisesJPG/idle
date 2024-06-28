@@ -685,14 +685,23 @@ function CheckMeltReqs(item = new ItemData({})){
     return true;
 }
 function CheckCraftReqs(item = new ItemData({})){
-    var currentTool = Tools.GetTool(item.toolReq.type).item;
-    if(currentTool){
-        if(currentTool.grade >= item.toolReq.grade){
-            return true;
+    if(item.toolReq == []){
+        console.log(item, "void")
+        return true;
+    }else{
+        var currentTool = Tools.GetTool(item.toolReq.type).item;
+        console.log(item, currentTool)
+
+        if(currentTool){
+            console.log(item, currentTool.grade)
+
+            if(currentTool.grade >= item.toolReq.grade){
+                return true;
+            }
+            return false;
         }
         return false;
     }
-    return false;
 }
 function ActivityEvent(resource, tool = "") {
     const item = Items.GetItem(resource);
