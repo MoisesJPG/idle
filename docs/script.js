@@ -509,9 +509,11 @@ function ManagerTools(generate){
             element.getElementsByClassName("name")[0].textContent = Tools.GetTool(name).item.name;
             element.getElementsByClassName("amount")[0].textContent = Tools.GetTool(name).item.bonnus || 0;
             if(Tools.GetTool(name).item){
-                element.getElementsByTagName("button")[0].style.display = '';
+                element.getElementsByTagName("button")[0].classList.add("enable")
+                element.getElementsByTagName("button")[0].classList.remove("disenable")
             }else{
-                element.getElementsByTagName("button")[0].style.display = 'none';
+                element.getElementsByTagName("button")[0].classList.add("disable")
+                element.getElementsByTagName("button")[0].classList.remove("enable")
             }
         }
     }
@@ -646,7 +648,6 @@ function ManagerActivities(generate){
 
 function EquipTool(item = new ItemData()){
 
-    console.log(item);
     Tools.GetTool(item.type).item = item;
 
     updateDisplay('Tools');
@@ -819,9 +820,9 @@ function updateDisplay(display) {
     
     if( display == null || display == "All" || display == "" ) ManagerAttributes(false);
     if( display == null || display == "All" || display == "" ) ManagerStats(false);
-    if( display == null || display == "All" || display == "Tools" )     ManagerTools(false);
-    if( display == null || display == "All" || display == "Inventory" ) ManagerInventory(false);
-    if( display == null || display == "All" || display == "Skills" ) ManagerSkills(false);
+    if( display == null || display == "All" || display == "Tools" )      ManagerTools(false);
+    if( display == null || display == "All" || display == "Inventory" )  ManagerInventory(false);
+    if( display == null || display == "All" || display == "Skills" )     ManagerSkills(false);
     if( display == null || display == "All" || display == "Activities" ) ManagerActivities(false);
 
     SaveData();
